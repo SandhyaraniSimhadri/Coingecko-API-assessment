@@ -1,8 +1,6 @@
 
 ## Coingecko integration with Laravel
 
-
-
 Coingecko API Data Laravel/Lumen Artisan Command This Laravel/Lumen project includes a simple Artisan command that retrieves data from the Coingecko API endpoint and stores it in a database.
 
 ### Requirements
@@ -11,24 +9,33 @@ Coingecko API Data Laravel/Lumen Artisan Command This Laravel/Lumen project incl
 
 - [Composer](https://getcomposer.org/download/)
 
-- Laravel installation command (composer global require laravel/installer)
+- Laravel installation command ($ composer global require laravel/installer)
 - Need Apache , MySQL server
 - Need Database
 ### For new project
 ```bash
-composer create-project --prefer-dist laravel/laravel coingecko-fastway_assessment
-php artisan make:command CoingeckoAPIData
-php artisan make:migration coingecko_data_table --create=coingecko_coins
-
+$ composer create-project --prefer-dist laravel/laravel coingecko-fastway_assessment
 ```
-### To create a model
+### To develop the artisan command
 ```bash
-php artisan make:model Models/CoingeckoCoin
+$ php artisan make:command CoingeckoAPIData
+
 ```
 ### Register
 - To register the artisan command Added following to kernel.php
 ```bash
 protected $commands = [ \App\Console\Commands\CoingeckoAPIData::class];
+```
+
+### To create the database schema
+```bash
+$ php artisan make:migration coingecko_data_table --create=coingecko_coins
+
+```
+
+### To create a model
+```bash
+$ php artisan make:model Models/CoingeckoCoin
 ```
 
 ## Installation
@@ -56,10 +63,9 @@ $ php artisan migrate
 
 ```
 
-
 ### Fetch data from API and store in DB
 ```bash
-php artisan coingecko:fetch
+$ php artisan coingecko:fetch
 ```
 
 
