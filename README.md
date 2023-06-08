@@ -1,54 +1,66 @@
-Coingecko API Data Laravel/Lumen Artisan Command
-This Laravel/Lumen project includes a simple Artisan command that retrieves data from the Coingecko API endpoint and stores it in a database.
 
-Requirements:
-PHP
-composer
+## Coingecko integration with Laravel
 
-Installation:
 
-Step 1 :
-Command to create the laravel project.
+
+Coingecko API Data Laravel/Lumen Artisan Command This Laravel/Lumen project includes a simple Artisan command that retrieves data from the Coingecko API endpoint and stores it in a database.
+
+### Requirements
+
+- [PHP](https://www.php.net/downloads.php)
+
+- [Composer](https://getcomposer.org/download/)
+
+- Laravel installation command (composer global require laravel/installer)
+- Need Apache , MySQL server
+- Need Database
+### For new project
+```bash
 composer create-project --prefer-dist laravel/laravel coingecko-fastway_assessment
-
-Step 2: 
-Command to develop the artisan command
 php artisan make:command CoingeckoAPIData
-
-write necessary code to fetch data from api and insert into databse, handling errors
-
-Step 3:
-Command to create the database schema
 php artisan make:migration coingecko_data_table --create=coingecko_coins
 
-write the schema to create the table
-
-Command to apply the changes to the database
-php artisan migrate
-
-I used local database
-set the DataBase credentails in .env file as follows.
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=coingecko_data
-DB_USERNAME=root
-DB_PASSWORD=
-
-Step 4:
-Command to create the Model
+```
+### To create a model
+```bash
 php artisan make:model Models/CoingeckoCoin
+```
+### Register
+- To register the artisan command Added following to kernel.php
+```bash
+protected $commands = [ \App\Console\Commands\CoingeckoAPIData::class];
+```
 
-write necessary code to check the table strcture and data
+## Installation
 
-Step 5:
-To register the artisan command
-Added following to kernel.php
+```bash
+$ git clone git@github.com:SandhyaraniSimhadri/Coingecko-API-assessment.git
+$ cd Coingecko-API-assessment
+$ composer install
+```
 
-protected $commands = [
-    \App\Console\Commands\CoingeckoAPIData::class,
-];
+### Create .env file
+- Required to connect with database
+```bash
+DB_CONNECTION=mysql
+DB_HOST=x.x.x.x
+DB_PORT=xxxx
+DB_DATABASE=coingecko_data
+DB_USERNAME=username
+DB_PASSWORD=******
+```
 
-Step 6:
-Command to fetch and insert the CoingeckoCoin API data to database
+### After env creating, run this to automatically create the table in the database which is mentioned in .env file
+```bash
+$ php artisan migrate
+
+```
+
+
+### Fetch data from API and store in DB
+```bash
 php artisan coingecko:fetch
+```
+
+
+
